@@ -1,42 +1,62 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../db/dataBase.js';
-import { detail_shopping } from './detail_shopping.model.js';
 import { recipe } from './recipe.model.js';
 
 export const supplies = sequelize.define('INSUMOS', {
-    ID_INSUMOS: {
+    ID_INSUMO: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     Nombre_Insumo: {
         type: DataTypes.STRING,
-        required: true
+        allowNull: false, 
+        unique: true, 
+        validate: {
+            customValidate(value) {
+                
+                if (!/^[A-Z][a-zA-Z\s]*$/.test(value)) {
+                    throw new Error('El nombre del insumo debe comenzar con mayúscula y puede contener letras y espacios.');
+                }
+            },
+        },
     },
     Cantidad_Insumo: {
-        type: DataTypes.SMALLINT,
-        // defaultValue: 0,
-        required: true
+        type: DataTypes.INTEGER,
+        allowNull: false, 
+        validate: {
+            isInt: true, 
+            min: 0, 
+            max: 9999, 
+        },
     },
-    Imagen: {
-        type: DataTypes.BLOB,
-        required: true
+    Medida_Insumo: {
+        type: DataTypes.STRING,
+        allowNull: false, 
+        validate: {
+            customValidate(value) {
+                if (!/^[A-Za-z\s()]+$/.test(value)) {
+                    throw new Error('La medida del insumo puede contener letras, espacios y paréntesis.');
+                }
+            },
+        },
     },
     Stock_Minimo: {
         type: DataTypes.INTEGER,
-        required: true
+        allowNull: false,
+        validate: {
+            isInt: true,
+            min: 0,  
+            max: 9999, 
+        },
+    },
+    Estado: { 
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, 
     }
+}, {
+    timestamps: false
 });
-
-supplies.hasMany(detail_shopping, {
-    foreignKey: 'ID_INSUMOS',
-    sourceKey: 'ID_INSUMOS'
-})
-
-detail_shopping.belongsTo(supplies, {
-    foreignKey: 'ID_INSUMOS',
-    targetId: 'ID_INSUMOS'
-})
 
 supplies.hasMany(recipe, {
     foreignKey: 'ID_INSUMOS',
