@@ -7,6 +7,7 @@ export const recipe = sequelize.define('RECETAS', {
         primaryKey: true,
         autoIncrement: true
     },
+    //En vez de cantidad es peso y añadir el campo de medida
     Cantidad: {
         type: DataTypes.SMALLINT,
         allowNull: false,
