@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './css/Product.css';
 import ReactPaginate from "react-paginate";
+import { AiFillEdit, AiFillEye, AiOutlineEye } from "react-icons/ai";
+import { MdToggleOn, MdToggleOff } from "react-icons/md";
 
 function Product() {
     const [ product, setProduct ] = useState([]);
@@ -68,18 +70,35 @@ function Product() {
 
     const currentPageData = filteredProduct.slice(offset, offset + itemsPerPage).map((product, index) => (
         <tr key={index}>
-            <td>{product.Nombre}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{product.Nombre_Producto}</td>
+            <td>{product.CATEGORIA_PRODUCTO_ID ? renderCategoryName(product.CATEGORIA_PRODUCTO_ID) : ''}</td>
+            <td>{product.Precio}</td>
+            <td>{product.Estado ? "Habilitado" : "Deshabilitado"}</td>
             <td>
-                <div>
-                    <Link to={`/recipeform/`}></Link>
+                <div className="edit-icons">
+                    <Link to={`/recipeform/${product.ID_PRODUCTO}`}><AiFillEdit /></Link>
+                    <Link to={`/recipe/${product.ID_PRODUCTO}`}><AiFillEye /></Link>
                 </div>
             </td>
         </tr>
-    ))
+    ));
+
+    const products = async () => {
+        try {
+            const response = await axios.post('http://localhost:4000/product', {
+                Precio: 0
+            });
+            const { ID_PRODUCTO } =response.data;
+            window.location.href = `http://localhost:5173/recipeform/${ID_PRODUCTO}`;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    return (
+        <div className="Product">
+            <h1 className="product_Title">Productos</h1>
+        </div>
+    )
 
 }

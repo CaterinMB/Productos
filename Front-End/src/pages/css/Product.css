@@ -1,0 +1,32 @@
+body{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #ffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.Product{
+    float: right;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 90%;
+    height: 100%;
+}
+
+.product_Title{
+    position: relative;
+    margin-bottom: 0%;
+    margin-left: 12%;
+    font-size: 35px;
+    font-weight:900;
+
+}
