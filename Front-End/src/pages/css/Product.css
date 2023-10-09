@@ -1,4 +1,4 @@
-body{
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -13,7 +13,7 @@ body{
     justify-content: center;
 }
 
-.Product{
+.Product {
     float: right;
     position: fixed;
     top: 10%;
@@ -22,11 +22,122 @@ body{
     height: 100%;
 }
 
-.product_Title{
+.product_Title {
     position: relative;
     margin-bottom: 0%;
     margin-left: 12%;
     font-size: 35px;
-    font-weight:900;
+    font-weight: 900;
 
+}
+
+.button-cont {
+    margin-top: 3%;
+    padding-bottom: 2%;
+    float: left;
+    margin-left: 12%;
+}
+
+.NewButton {
+    background-color: #FF9900;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.NewButton:hover {
+    background-color: #FF8C00;
+}
+
+.filter_container {
+    font-size: 18_salespx;
+    margin-top: 3%;
+    float: right;
+    padding-right: 5%;
+}
+
+.filter_container input {
+    border: 1px solid #333;
+}
+
+.product_table {
+    margin-top: 5%;
+    margin-left: 15%;
+    min-width: 70vw;
+}
+
+.table_products {
+    border-radius: 10px;
+    min-width: 70vw;
+    margin-top: 12%;
+}
+
+.table_products td,
+.table_recipe td {
+    height: 4ch;
+    text-align: center;
+    border-width: 1px;
+    border-color: black;
+    width: 4ch;
+}
+
+.table_products th,
+.table_recipe th {
+    background-color: #403E3c;
+    color: #ffff;
+    font-weight: lighter;
+    padding: 6px;
+    text-align: center;
+    border-width: 1px;
+    border-color: black;
+    align-items: center;
+}
+
+.estado-icon.active {
+    color: rgba(232, 120, 0, 0.819);
+}
+
+.estado-icon.inactive {
+    color: gray;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination-item {
+    margin: 0 5%;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pagination-item:not(:last-child) {
+    margin-right: 5px;
+}
+
+.pagination-item:hover {
+    background-color: #f0f0f0;
+}
+
+.active {
+    background-color: #FF9900;
+    color: black;
+}
+
+.pagination-disabled {
+    opacity: 0;
+    cursor: not-allowed;
 }

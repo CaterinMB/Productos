@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import logo from '../img/logo.png'
-import insumos from '../img/insumos.png'
-import compras from '../img/compras.png'
-import productos from '../img/productos.png'
-import ventas from '../img/ventas.png'
-import informes from '../img/informes.png'
-import configuracion from '../img/configuracion.png'
-import usuario from '../img/usuario.png'
+import logo from '../img/logo.png';
+import insumos from '../img/insumos.png';
+import compras from '../img/compras.png';
+import productos from '../img/productos.png';
+import ventas from '../img/ventas.png';
+import informes from '../img/informes.png';
+import configuracion from '../img/configuracion.png';
+import usuario from '../img/user.png';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {

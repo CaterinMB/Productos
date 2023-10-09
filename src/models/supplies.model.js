@@ -59,11 +59,11 @@ export const supplies = sequelize.define('INSUMOS', {
 });
 
 supplies.hasMany(recipe, {
-    foreignKey: 'ID_INSUMOS',
-    sourceKey: 'ID_INSUMOS'
+    foreignKey: 'ID_INSUMO',
+    sourceKey: 'ID_INSUMO'
 })
 
 recipe.belongsTo(supplies, {
-    foreignKey: 'ID_INSUMOS',
-    targetId: 'ID_INSUMOS'
+    foreignKey: 'ID_INSUMO',
+    targetId: 'ID_INSUMO'
 })

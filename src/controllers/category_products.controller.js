@@ -1,9 +1,8 @@
-import { category_products } from "../models/category_products.model.js";
-// import { products } from "../models/products.model.js";
+import { category_product } from "../models/category_product.model.js";
 
 export const getCategory_products = async (req, res) => {
     try {
-        const arrayCategory_products = await category_products.findAll()
+        const arrayCategory_products = await category_product.findAll()
         res.json(arrayCategory_products);
     } catch (error) {
         return res.status(500).json({ message: error.message });
@@ -13,7 +12,7 @@ export const getCategory_products = async (req, res) => {
 export const getOneCategory_products = async (req, res) => {
     try {
         const { id } = req.params;
-        const oneCategory_products = await category_products.findOne({
+        const oneCategory_products = await category_product.findOne({
             where: {
                 ID_CATEGORIA_PRODUCTO: id
             }
@@ -31,7 +30,7 @@ export const createCategory_products = async (req, res) => {
     try {
         const { Nombre_Categoria } = req.body
 
-        const newCategory_products = new category_products({
+        const newCategory_products = new category_product({
             Nombre_Categoria,
             Estado: true
         })
@@ -48,7 +47,7 @@ export const disableCategory_products = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const categoryProducts = await category_products.findOne({
+        const categoryProducts = await category_product.findOne({
             where: {
                 ID_CATEGORIA_PRODUCTO: id
             }
@@ -72,7 +71,7 @@ export const updateCategory_products = async (req, res) => {
         const { id } = req.params;
         const { Nombre_Categoria } = req.body
 
-        const updateCategory_products = await category_products.findByPk(id)
+        const updateCategory_products = await category_product.findByPk(id)
         updateCategory_products.Nombre_Categoria = Nombre_Categoria;
 
         await updateCategory_products.save();
@@ -86,7 +85,7 @@ export const deleteCategory_products = async (req, res) => {
     try {
         const { id } = req.params;
 
-        await category_products.destroy({
+        await category_product.destroy({
             where: {
                 ID_CATEGORIA_PRODUCTO: id,
             },
