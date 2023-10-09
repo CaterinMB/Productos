@@ -1,0 +1,36 @@
+.product-form-container {
+    margin-top: 3%;
+    margin-left: 33%;
+    margin-bottom: 10%;
+    width: 100%;
+}
+
+.product-form-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+
+.product-form-container input {
+    border-width: 2px;
+    border-radius: 30%;
+    width: 30px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.custom_button {
+    background-color: #cf0a0a;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom_button:hover {
+    background-color: #FF9900;
+}

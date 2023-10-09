@@ -37,3 +37,35 @@ export const getRecipeWProduct = async (req, res) => {
         return res.state(500).json({ message: error.message })
     }
 }
+
+export const updateRecipeAdd = async(req, res) => {
+    try {
+    const {id} = req.params 
+    const recipe = await recipe.findByPk(id)
+    const Cantidad = recipe.Cantidad+1
+    
+    await recipe.update({
+        Cantidad : Cantidad
+    })
+
+    res.json(recipe)
+    } catch (error) { 
+        return res.status(500).json({ message: error.message });
+    }
+}
+
+export const updateRecipesubstract = async(req, res) => {
+    try {
+    const {id} = req.params 
+    const recipe = await recipe.findByPk(id)
+    const Cantidad = recipe.Cantidad-1
+    
+    await recipe.update({
+        Cantidad : Cantidad
+    })
+
+    res.json(recipe)
+    } catch (error) { 
+        return res.status(500).json({ message: error.message });
+    }
+}

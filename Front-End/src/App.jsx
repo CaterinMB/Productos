@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
-import { ProductRecipeForm } from './pages/productRecipeForm.jsx';
-import { ProductForm } from './pages/productForm.jsx';
-import { RecipeForm } from './pages/recipeForm.jsx';
-import { Product } from './pages/product.jsx';
+import ProductRecipeForm from './pages/productRecipeForm.jsx';
+import ProductForm from './pages/productForm.jsx';
+import Recipe from './pages/recipe.jsx';
+import Product from './pages/product.jsx';
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
         <Navbar />
         <main className='container mx-auto px-10 flex-grow'>
           <Routes>
-            <Route path='/' element={<h1>Home</h1>} />
+            <Route path='/' element={<h1>DASHBOARD</h1>} />
             <Route path='/product' element={<Product />} />
-            <Route path='/recipes/:id' element={<RecipeForm />} />
+            <Route path='/recipes/:id' element={<Recipe />} />
             <Route path='/productform' element={<ProductForm />} />
             <Route path='/product_add/:id' element={<ProductRecipeForm />} />
           </Routes>

@@ -1,0 +1,47 @@
+.whole {
+    float: right;
+    position: fixed;
+    top: 0;
+    left: 18%;
+    width: 90%;
+    height: 100%;
+}
+
+.left-side {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+
+.rigth-side {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+
+}
+
+.supplies_button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #FF9900;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 150px;
+    height: 100px;
+}
+
+.supplies_button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.recipe_table {
+    margin-right: 30%;
+    position: relative;
+}

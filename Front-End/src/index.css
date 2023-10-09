@@ -8,6 +8,10 @@ body {
     color: #000000;
 }
 
+h1 {
+    font-size: 25px;
+}
+
 .menu {
     width: 210px;
 }

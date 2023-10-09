@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/product', getProducts)
 router.get('/product_recipe/:id', getProductRecipe)
-router.post('product', createProduct)
+router.post('product-add', createProduct)
 router.put('/product/:id', updateProduct)
 router.put('/product/toggle/:id', toggleProductStatus)
 
