@@ -10,23 +10,7 @@ export const recipe = sequelize.define('RECETAS', {
     //En vez de cantidad es peso y añadir el campo de medida
     Cantidad: {
         type: DataTypes.SMALLINT,
-        allowNull: false,
-        validate: {
-            notNull: {
-                msg: 'La cantidad es requerida'
-            },
-            isInt: {
-                msg: 'La cantidad debe ser un número entero'
-            },
-            min: {
-                args: [1],
-                msg: 'La cantidad debe ser al menos 1'
-            },
-            max: {
-                args: [300],
-                msg: 'La cantidad no puede exceder 300'
-            }
-        }
+        allowNull: false
     }
 }, {
     timestamps: false

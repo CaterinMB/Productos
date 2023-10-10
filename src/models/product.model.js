@@ -11,50 +11,16 @@ export const product = sequelize.define('PRODUCTOS', {
     Nombre_Producto: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
-        validate: {
-            notNull: {
-                msg: 'El nombre es requerido'
-            },
-            noSpecialCharacters(value) {
-                const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-                if (specialCharacters.test(value)) {
-                    throw new Error('Este campo no puede contener caracteres especiales');
-                }
-            },
-            noNumbers(value) {
-                if (/[0-9]/.test(value)) {
-                    throw new Error('Este campo no puede contener números');
-                }
-            }
-        }
+        unique: true
     },
     Precio: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-        validate: {
-            notNull: {
-                msg: 'El precio es requerido'
-            },
-            isDecimal: {
-                args: [true],
-                msg: 'El precio debe ser un valor decimal'
-            },
-            min: {
-                args: [50.00],
-                msg: 'El precio debe ser al menos 50.00'
-            }
-        }
+        allowNull: false
     },
     Estado: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: true,
-        validate: {
-            notNull: {
-                msg: 'El estado es requerida'
-            }
-        }
+        defaultValue: true
     }
 }, {
     timestamps: false
