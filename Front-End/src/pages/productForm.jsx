@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import './css/FormProduct.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import SelectCategory from '../components/selectCategory';
 
 function ProductForm() {
     let { id } = useParams();
@@ -40,30 +41,24 @@ function ProductForm() {
     return (
         <div className="product-form-container">
             <form>
-                <label>Nombre
-                    <input
-                        type="text"
-                        name="Nombre_Producto"
-                        {...register("Nombre_Producto", {
-                            required: 'El nombre es obligatorio',
-                            pattern: {
-                                value: /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*[a-záéíóúñ]$/,
-                                message: 'El nombre del producto debe tener la primera letra en mayúscula y solo letras.'
-                            }
-                        })}
-                        checked={formValues.Nombre_Producto}
-                        onChange={handleInputChange}
-                    />
+                <label>Nombre: </label>
+                <input
+                    type="text"
+                    name="Nombre_Producto"
+                    checked={formValues.Nombre_Producto}
+                    onChange={handleInputChange}
+                />
 
-                </label>
-
-                <label>Precio:</label>
+                <label>Precio: </label>
                 <input
                     type="number"
                     name="Precio"
                     value={formValues.Precio}
                     onChange={handleInputChange}
                 />
+
+                <SelectCategory />
+                
                 <button
                     type="button"
                     onClick={handleInputChange2}
