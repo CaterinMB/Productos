@@ -17,7 +17,7 @@ function App() {
             <Route path='/product' element={<Product />} />
             <Route path='/recipes/:id' element={<Recipe />} />
             <Route path='/productform' element={<ProductForm />} />
-            <Route path='/product_add/:id' element={<ProductRecipeForm />} />
+            <Route path='/product/:id' element={<ProductRecipeForm />} />
           </Routes>
         </main>
       </div>

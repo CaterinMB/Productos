@@ -18,7 +18,7 @@ function ProductRecipeForm() {
         })
     }, [])
 
-    function getSupplies() {x
+    function getSupplies() {
         return (
             <div>
                 {ListSupplies.map((value, key) => (
@@ -34,11 +34,11 @@ function ProductRecipeForm() {
     }
 
 
-    const createDetail = async (ID_INSUMO) => {
+    const createDetail = async (ID_INSUMO, ) => {
         try {
             const dataToSend = {
                 Cantidad: 1,
-                ID_VENTA: intID_PRODUCTO,
+                ID_PRODUCTO: intID_PRODUCTO,
                 ID_INSUMO: ID_INSUMO,
             };
             const response = await axios.post("http://localhost:4000/recipe", dataToSend);

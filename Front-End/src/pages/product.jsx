@@ -12,7 +12,6 @@ function Product() {
     const [itemsPerPage] = useState(5);
     const [estadoFilter, setEstadoFilter] = useState('all');
     const [categoryNames, setCategoryNames] = useState({});
-    const [categoryFilter, setCategoryFilter] = useState('');
 
     const barraClass = product.Estado ? "" : "desactivado";
 
@@ -20,11 +19,11 @@ function Product() {
         const fetchData = async () => {
             try {
                 const productResponse = await axios.get(`http://localhost:4000/product`);
-                const sortedSales = productResponse.data.sort((a, b) => a.ID_PRODUCTO - b.ID_PRODUCTO);
-                setProduct(sortedSales);
+                const sortedProduct = productResponse.data.sort((a, b) => a.ID_PRODUCTO - b.ID_PRODUCTO);
+                setProduct(sortedProduct);
 
                 const categoryNamesData = {};
-                for (const product of sortedSales) {
+                for (const product of sortedProduct) {
                     const categoryID = product.CATEGORIA_PRODUCTO_ID
                     if (categoryID !== null && !categoryNamesData[categoryID]) {
                         try {
@@ -44,17 +43,9 @@ function Product() {
         fetchData();
     }, []);
 
-    const handleToggleProductStatus = () => {
-        if (canChangeRoleStatus) {
-          toggleRoleStatus(product.ID_PRODUCTO);
-        } else {
-          setIsModalOpen(true);
-        }
-      };
-
     const renderCategoryName = (categoryID) => {
         const categoryName = categoryNames[categoryID];
-        return categoryName;
+        return categoryName || 'Categoria asignada Erroneamente.';
     };
 
     const handlePageChange = ({ selected }) => {
@@ -63,10 +54,6 @@ function Product() {
 
     const handleEstadoFilterChange = (e) => {
         setEstadoFilter(e.target.value);
-    };
-
-    const handleCategoryFilterChange = (e) => {
-        setCategoryFilter(e.target.value);
     };
 
     const filterProductByEstado = (product) => {
@@ -80,13 +67,13 @@ function Product() {
 
     const currentPageData = filteredProduct.slice(offset, offset + itemsPerPage).map((product, index) => (
         <tr key={index}>
+            <td className="border border-gray-400 px-4 py-2 text-center width-column">{renderCategoryName(product.CATEGORIA_PRODUCTO_ID) !== undefined ? renderCategoryName(product.CATEGORIA_PRODUCTO_ID).Nombre_Categoria : ''}</td>
             <td className="border border-gray-400 px-4 py-2 text-center width-column">{product.Nombre_Producto}</td>
-            <td className="border border-gray-400 px-4 py-2 text-center width-column">{renderCategoryName(product.CATEGORIA_PRODUCTO_ID) !== undefined? renderCategoryName(product.CATEGORIA_PRODUCTO_ID).Nombre_Categoria : ''}</td>
             <td className="border border-gray-400 px-4 py-2 text-center width-column">{product.Precio}</td>
             <td className={`border border-gray-400 px-4 py-2 text-center width-column ${barraClass}`}>{product.Estado ? "Habilitado" : "Deshabilitado"}</td>
             <td>
                 <div className="edit-icons">
-                    <Link to={`/recipeform/${product.ID_PRODUCTO}`}><AiFillEdit /></Link>
+                    <Link to={`/product/${product.ID_PRODUCTO}`}><AiFillEdit /></Link>
                     <Link to={`/recipe/${product.ID_PRODUCTO}`}><AiFillEye /></Link>
                 </div>
             </td>
@@ -125,8 +112,8 @@ function Product() {
                 <table className="table_products">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre</th>
                             <th scope="col">Categoria</th>
+                            <th scope="col">Nombre</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acciones</th>

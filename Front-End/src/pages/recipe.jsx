@@ -6,17 +6,17 @@ import './css/Product.css';
 
 function Recipe(updateTrigger) {
     let { id } = useParams()
-    const [ListSupplies, setListSupplies] = useState([])
+    const [List_Products, setList_Products] = useState([])
 
     useEffect(() => {
         axios.get(`http://localhost:4000/RecipeWProduct/${id}`).then((response) => {
-            setListSupplies(response.data)
+            setList_Products(response.data)
         })
     }, [updateTrigger])
 
     function getProduct() {
-        ListSupplies.map(value, key)
-        return ListSupplies.map((value, key) => (
+        List_Products.map(value, key)
+        return List_Products.map((value, key) => (
             <tr>
                 <td scope="row">{value.ID_INSUMO}</td>
                 <td scope="row">{value.Cantidad}</td>

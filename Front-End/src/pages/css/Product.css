@@ -6,7 +6,7 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.details{
+.details {
     position: fixed;
     top: 30%;
     left: 30%;
@@ -14,22 +14,22 @@ body {
     height: 100%;
 }
 
-.back{
-    position:fixed;
+.back {
+    position: fixed;
     top: 5%;
     left: 20%;
     margin: 10px;
     font-size: 20px;
-    font-weight:900;
+    font-weight: 900;
 }
 
-.Title-Recipe{
-    position:fixed;
+.Title-Recipe {
+    position: fixed;
     top: 16%;
     left: 20%;
     margin: 10px;
     font-size: 25px;
-    font-weight:900;
+    font-weight: 900;
 }
 
 .edit-icons {
@@ -168,13 +168,17 @@ body {
     cursor: not-allowed;
 }
 
-.add_cuantity{
+.pagination_c {
+    margin-left: 250px;
+}
+
+.add_cuantity {
     color: red;
     padding-right: 10%;
     font-size: 20px;
 }
 
-.subtract_cuantity{
+.subtract_cuantity {
     color: rgb(79, 131, 0);
     padding-left: 8%;
     font-size: 20px;

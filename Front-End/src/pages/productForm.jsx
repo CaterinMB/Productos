@@ -2,14 +2,30 @@ import React, { useState, useEffect } from "react";
 import './css/FormProduct.css';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import SelectCategory from '../components/selectCategory';
+//import SelectCategory from '../components/selectCategory';
 
 function ProductForm() {
     let { id } = useParams();
     const intID_PRODUCTO = parseInt(id, 10);
+    const [options, setOptions] = useState([]);
+    const [formValues, setFormValues] = useState([]);
 
-    const handleInputChange2 = (e) => {
+    useEffect(() => {
+        const GetCategory = async () => {
+          try {
+            const response = await axios.get('http://localhost:4000/category_products');  
+            setOptions(response.data.Nombre_Categoria);
+          } catch (error) {
+            console.error('Error fetching options from the database:', error);
+          }
+        };
+    
+        GetCategory();
+      }, []);
+
+    const handleInputChange2 = async(e) => {
         const { name, value } = e.target;
+        await axios.put(`http://localhost:4000/product/${intID_PRODUCTO}`)
 
         setFormValues({
             ...formValues,
@@ -57,8 +73,20 @@ function ProductForm() {
                     onChange={handleInputChange}
                 />
 
-                <SelectCategory />
-                
+                <label htmlFor="options">Seleccionar categoria:</label>
+                <select
+                    id="options"
+                    name="CATEGORIA_PRODUCTO_ID"
+                    value={formValues.CATEGORIA_PRODUCTO_ID}
+                    onChange={handleInputChange}
+                >
+                    {options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+
                 <button
                     type="button"
                     onClick={handleInputChange2}
