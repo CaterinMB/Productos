@@ -107,7 +107,7 @@ body {
     text-align: center;
     border-width: 1px;
     border-color: black;
-    width: 4ch;
+    width: 6ch;
 }
 
 .table_products th,
@@ -115,7 +115,7 @@ body {
     background-color: #403E3c;
     color: #ffff;
     font-weight: lighter;
-    padding: 6px;
+    padding: 10px;
     text-align: center;
     border-width: 1px;
     border-color: black;

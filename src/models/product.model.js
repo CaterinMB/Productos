@@ -8,14 +8,14 @@ export const product = sequelize.define('PRODUCTOS', {
         primaryKey: true,
         autoIncrement: true
     },
-    Nombre_Producto: {
+    NombreProducto: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
         unique: true
     },
     Precio: {
         type: DataTypes.DECIMAL(10, 2),
-        allowNull: false
+        // allowNull: false
     },
     Estado: {
         type: DataTypes.BOOLEAN,

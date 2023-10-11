@@ -13,11 +13,11 @@ export const getProducts = async (req, res) =>  {
 
 //Crear un producto
 export const createProduct = async (req, res) => {
-    const { Nombre_Producto, Precio, ID_CATEGORIA_PRODUCTOS } = req.body;
+    const { NombreProducto, Precio, ID_CATEGORIA_PRODUCTOS } = req.body;
 
     try {
         const newProduct = await product.create({
-            Nombre_Producto,
+            NombreProducto,
             Precio,
             ID_CATEGORIA_PRODUCTOS
         })
@@ -50,11 +50,11 @@ export const updateProduct = async (req, res) => {
     const { id } = req.params
 
     try {
-        const { Nombre_Producto, Precio, ID_CATEGORIA_PRODUCTOS } = req.body
+        const { NombreProducto, Precio, ID_CATEGORIA_PRODUCTOS } = req.body
 
         const updateProduct = await user.findByPk(id)
 
-        updateProduct.Nombre_Producto = Nombre_Producto
+        updateProduct.NombreProducto = NombreProducto
         updateProduct.Precio = Precio
         updateProduct.ID_CATEGORIA_PRODUCTOS = ID_CATEGORIA_PRODUCTOS
 
@@ -65,6 +65,8 @@ export const updateProduct = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 }
+
+//Acrualizar 
 
 //Cambiar estado
 export const toggleProductStatus = async (req, res) => {

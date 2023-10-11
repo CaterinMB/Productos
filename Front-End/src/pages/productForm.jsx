@@ -6,26 +6,26 @@ import axios from 'axios';
 
 function ProductForm() {
     let { id } = useParams();
-    const intID_PRODUCTO = parseInt(id, 10);
+    const ID_PRODUCTO = parseInt(id, 10);
     const [options, setOptions] = useState([]);
     const [formValues, setFormValues] = useState([]);
 
     useEffect(() => {
         const GetCategory = async () => {
-          try {
-            const response = await axios.get('http://localhost:4000/category_products');  
-            setOptions(response.data.Nombre_Categoria);
-          } catch (error) {
-            console.error('Error fetching options from the database:', error);
-          }
+            try {
+                const response = await axios.get('http://localhost:4000/category_products');
+                setOptions(response.data.Nombre_Categoria);
+            } catch (error) {
+                console.error('Error fetching options from the database:', error);
+            }
         };
-    
-        GetCategory();
-      }, []);
 
-    const handleInputChange2 = async(e) => {
+        GetCategory();
+    }, []);
+
+    const handleInputChange2 = async (e) => {
         const { name, value } = e.target;
-        await axios.put(`http://localhost:4000/product/${intID_PRODUCTO}`)
+        await axios.put(`http://localhost:4000/product/${ID_PRODUCTO}`)
 
         setFormValues({
             ...formValues,
@@ -45,7 +45,7 @@ function ProductForm() {
     };
 
     const updateFormData = async () => {
-        await axios.put(`http://localhost:4000/product/${intID_PRODUCTO}`)
+        await axios.put(`http://localhost:4000/products/${ID_PRODUCTO}`)
             .then(response => {
                 console.log('Datos actualizados con éxito', response.data);
             })
@@ -60,8 +60,8 @@ function ProductForm() {
                 <label>Nombre: </label>
                 <input
                     type="text"
-                    name="Nombre_Producto"
-                    checked={formValues.Nombre_Producto}
+                    name="NombreProducto"
+                    checked={formValues.NombreProducto}
                     onChange={handleInputChange}
                 />
 
@@ -71,10 +71,16 @@ function ProductForm() {
                     name="Precio"
                     value={formValues.Precio}
                     onChange={handleInputChange}
-                />
+                /><br />
 
                 <label htmlFor="options">Seleccionar categoria:</label>
-                <select
+                <input
+                    type="number"
+                    name="CATEGORIA_PRODUCTO_ID"
+                    value={formValues.CATEGORIA_PRODUCTO_ID}
+                    onChange={handleInputChange}
+                />
+                {/* <select
                     id="options"
                     name="CATEGORIA_PRODUCTO_ID"
                     value={formValues.CATEGORIA_PRODUCTO_ID}
@@ -85,16 +91,15 @@ function ProductForm() {
                             {option.label}
                         </option>
                     ))}
-                </select>
-
-                <button
-                    type="button"
-                    onClick={handleInputChange2}
-                    className="custom_button"
-                >
-                    Guardar
-                </button>
+                </select> */}
             </form>
+            <button
+                type="button"
+                onClick={handleInputChange2}
+                className="custom_button"
+            >
+                Guardar
+            </button>
         </div>
     );
 }

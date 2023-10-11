@@ -7,7 +7,7 @@ import ProductForm from './productForm';
 
 function ProductRecipeForm() {
     let { id } = useParams();
-    const intID_PRODUCTO = parseInt(id, 10);
+    const ID_PRODUCTO = parseInt(id, 10);
     const [updateTrigger, setUpdateTrigger] = useState(false);
 
     const [ListSupplies, setListSupplies] = useState([])
@@ -33,16 +33,15 @@ function ProductRecipeForm() {
         );
     }
 
-
     const createDetail = async (ID_INSUMO, ) => {
         try {
             const dataToSend = {
                 Cantidad: 1,
-                ID_PRODUCTO: intID_PRODUCTO,
+                ID_PRODUCTO: ID_PRODUCTO,
                 ID_INSUMO: ID_INSUMO,
             };
             const response = await axios.post("http://localhost:4000/recipe", dataToSend);
-            const update = await axios.put(`http://localhost:4000/product/${intID_PRODUCTO}`)
+            const update = await axios.put(`http://localhost:4000/products/${ID_PRODUCTO}`)
 
             setUpdateTrigger(!updateTrigger)
 

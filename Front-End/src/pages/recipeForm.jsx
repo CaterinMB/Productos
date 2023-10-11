@@ -18,33 +18,50 @@ function RecipeForm({ updateTrigger }) {
     const fetchData = () => {
         axios.get(`http://localhost:4000/RecipeWProduct/${id}`).then((response) => {
             setList_Product(response.data)
-        })
+        }).catch((error) => {
+            console.error('Error data: ', error)
+        });
     }
 
-    const Add = async (id) => {
+    const handleAdd = async (id) => {
         try {
             await axios.put(`http://localhost:4000/updateRecipe_add/${id}`);
             fetchData();
         } catch (error) {
-            console.log(error);
+            console.log('Error add: ', error);
         }
     };
 
-    const SubsTract = async (id) => {
+    const handleSubtract = async (id) => {
         try {
-            await axios.put(`http://localhost:4000/updateRecipe_substract/${id}`);
+            await axios.put(`http://localhost:4000/updateRecipe_subtract/${id}`);
             fetchData();
         } catch (error) {
-            console.log(error);
+            console.log('Error subtract: ',error);
         }
     };
 
     function getProduct() {
-        List_Product.map(value, key)
         return List_Product.map((value, key) => (
             <tr>
                 <td scope="row">{value.ID_INSUMO}</td>
-                <td scope="row" ><button className='add_cuantity' onClick={() => SubsTract(value.ID_DETALLE_VENTA)}><AiOutlineMinusCircle /></button>{value.Cantidad} <button className='subtract_cuantity' onClick={() => add(value.ID_DETALLE_VENTA)}><AiOutlinePlusCircle /></button> </td>
+                <td scope="row" >
+                    <button
+                        className='add_cuantity'
+                        onClick={() => handleSubtract(value.ID_RECETA)}
+                    >
+                        <AiOutlineMinusCircle />
+                    </button>
+
+                    {value.Cantidad}
+
+                    <button
+                        className='subtract_cuantity'
+                        onClick={() => handleAdd(value.ID_RECETA)}
+                    >
+                        <AiOutlinePlusCircle />
+                    </button>
+                </td>
             </tr>
         ))
     }
@@ -75,18 +92,21 @@ function RecipeForm({ updateTrigger }) {
             <table className="table_recipe">
                 <thead>
                     <tr>
-                        <th scope="col">Insumo</th>
-                        <th scope="col">Cantidad</th>
+                        <th>Insumo</th>
+                        <th>Cantidad</th>
                     </tr>
                 </thead>
                 <tbody>
                     {currentItems.map((value, key) => (
                         <tr key={key}>
-                            <td scope="row">{value.ID_INSUMO}</td>
-                            <td scope="row">
+                            <td>
+                                {value.ID_INSUMO}
+                            </td>
+                            
+                            <td>
                                 <button
                                     className="add_cuantity"
-                                    onClick={() => SubsTract(value.ID_RECETA)}
+                                    onClick={() => handleAdd(value.ID_RECETA)}
                                     disabled={value.Cantidad === 1}
                                 >
                                     <AiOutlineMinusCircle />
@@ -94,7 +114,7 @@ function RecipeForm({ updateTrigger }) {
                                 {value.Cantidad}
                                 <button
                                     className="subtract_cuantity"
-                                    onClick={() => Add(value.ID_RECETA)}
+                                    onClick={() => handleSubtract(value.ID_RECETA)}
                                 >
                                     <AiOutlinePlusCircle />
                                 </button>
@@ -109,7 +129,7 @@ function RecipeForm({ updateTrigger }) {
                         <button
                             key={number}
                             onClick={() => paginate(number)}
-                            className={`mx-1 px-3 py-1 rounded ${currentPage === number ? 'bg-orange-700 text-white' : 'bg-orange-400 hover:bg-orange-600 text-black'}`}
+                            className={`mx-1 px-3 py-1 rounded ${currentPage === number ? 'bg-orange-500 text-white' : 'bg-orange-300 hover:bg-orange-500 text-black'}`}
                         >
                             {number}
                         </button>

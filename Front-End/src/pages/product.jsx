@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './css/Product.css';
 import ReactPaginate from "react-paginate";
-import { AiFillEdit, AiFillEye, AiOutlineEye } from "react-icons/ai";
+import { AiFillEdit, AiOutlineEye } from "react-icons/ai";
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
 
 function Product() {
@@ -68,13 +68,13 @@ function Product() {
     const currentPageData = filteredProduct.slice(offset, offset + itemsPerPage).map((product, index) => (
         <tr key={index}>
             <td className="border border-gray-400 px-4 py-2 text-center width-column">{renderCategoryName(product.CATEGORIA_PRODUCTO_ID) !== undefined ? renderCategoryName(product.CATEGORIA_PRODUCTO_ID).Nombre_Categoria : ''}</td>
-            <td className="border border-gray-400 px-4 py-2 text-center width-column">{product.Nombre_Producto}</td>
+            <td className="border border-gray-400 px-4 py-2 text-center width-column">{product.NombreProducto}</td>
             <td className="border border-gray-400 px-4 py-2 text-center width-column">{product.Precio}</td>
             <td className={`border border-gray-400 px-4 py-2 text-center width-column ${barraClass}`}>{product.Estado ? "Habilitado" : "Deshabilitado"}</td>
             <td>
                 <div className="edit-icons">
-                    <Link to={`/product/${product.ID_PRODUCTO}`}><AiFillEdit /></Link>
-                    <Link to={`/recipe/${product.ID_PRODUCTO}`}><AiFillEye /></Link>
+                    <Link to={`/product-add/${product.ID_PRODUCTO}`}><AiFillEdit /></Link>
+                    <Link to={`/recipe/${product.ID_PRODUCTO}`}><AiOutlineEye /></Link>
                 </div>
             </td>
         </tr>
@@ -84,7 +84,7 @@ function Product() {
         try {
             const response = await axios.post('http://localhost:4000/product');
             const { ID_PRODUCTO } = response.data;
-            window.location.href = `http://localhost:5173/product/${ID_PRODUCTO}`;
+            window.location.href = `http://localhost:5173/product-add/${ID_PRODUCTO}`;
         } catch (error) {
             console.log(error);
         }
